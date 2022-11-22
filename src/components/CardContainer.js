@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios'
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import '../App.css'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 
 const CardContainer = ({id, title, poster, ShowDetail, DetailRequest, ActivateModal}) => {
@@ -19,14 +21,16 @@ const CardContainer = ({id, title, poster, ShowDetail, DetailRequest, ActivateMo
   };
 
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant='top' src={poster === 'N/A' ? 'https://placehold.it/198x264&text=Image+Not+Found' : poster} />
-      <Card.Body>
-        <Card.Text>{title}</Card.Text>
-        <Button onClick={() => clickHandler()} variant='primary'>Info</Button>
-      </Card.Body>
-    </Card>
-  )
-}
+    <>
+      <img className="card" src={poster} alt={title} />
+      <FontAwesomeIcon
+          onClick={() => clickHandler()}
+          icon={faBars}
+          size="3x"
+          className='hamburger-icon' />
+    </>
+        )
+      }
+
 
 export default CardContainer;
