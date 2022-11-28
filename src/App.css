@@ -41,3 +41,7 @@
 .modal-content {
   padding: 15px !important;
 }
+
+.modal-dialog {
+  width: 80vw !important;
+}

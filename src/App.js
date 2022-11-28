@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import TinderCard from 'react-tinder-card'
+import TinderCard from 'react-tinder-card';
 import './App.css';
-import axios from 'axios'
+import axios from 'axios';
+import Modal from './components/modal';
 
 // Component imports
 import MovieModalDetail from './components/MovieModalDetail';
@@ -10,10 +11,7 @@ import { Loader } from './components/Loader';
 
 // Bootstrap imports
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import Modal from 'react-bootstrap/Modal';
+// import Modal from 'react-bootstrap/Modal';
 
 function App() {
   const [data, setData] = useState(null);
@@ -58,13 +56,7 @@ function App() {
           </TinderCard>
 
         ))}
-        <Modal
-          style={{padding: '25px'}}
-          show={activateModal}
-          onHide={() => setActivateModal(false)}
-        >
-          { detailRequest === false ? (<MovieModalDetail {...detail} />) : (<Loader />) }
-        </Modal>
+        {activateModal ? detailRequest === false ? (<Modal {...detail} closeModal={setActivateModal} />) : (<Loader />) : ''}
 </>
   );
 }
