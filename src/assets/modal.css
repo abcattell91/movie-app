@@ -1,0 +1,68 @@
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  width: 95vw;
+  height: 95vh;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  overflow: scroll;
+}
+
+.modalTitle {
+  padding: 4px 0px;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(182, 182, 182);
+}
+
+.modalDescription {
+  font-size: 16px;
+  text-align: center;
+  padding: 8px;
+}
+
+.modalGenres {
+  text-align: center;
+}
+
+.modalGenre {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid #d7d7d7;
+  /* color: #000; */
+  padding: 4px 7px;
+  border-radius: 4px;
+  justify-content: right;
+  width: 95px;
+  margin: 4px;
+  display: inline-block;
+}
+
+.titleCloseBtn {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+.modalTrailer {
+  padding-top: 8px;
+}

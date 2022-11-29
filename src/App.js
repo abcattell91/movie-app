@@ -56,6 +56,7 @@ function App() {
           </TinderCard>
 
         ))}
+        {/* Loader is just bootstrap loading can be replaced later */}
         {activateModal ? detailRequest === false ? (<Modal {...detail} closeModal={setActivateModal} />) : (<Loader />) : ''}
 </>
   );
