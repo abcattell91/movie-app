@@ -80,8 +80,6 @@ function Deck() {
         setTimeout(() => nope.clear() || set(i => to(i)), 600);
     }
   );
-
-  console.log('deck.js', {...data})
   return (
     props.map(({ x, y, rot, scale }, i) => (
     <>
@@ -92,7 +90,7 @@ function Deck() {
       rot={rot}
       scale={scale}
       trans={trans}
-      {...data}
+      data={data}
       bind={bind}
       key={i}
       ShowDetail={setShowDetail}

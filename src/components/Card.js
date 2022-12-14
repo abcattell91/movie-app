@@ -7,8 +7,9 @@ import '../assets/Card.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
-const Card = ({ poster, id, ShowDetail, DetailRequest, ActivateModal, i, x, y, rot, scale, trans, bind, data}) => {
-  console.log(data)
+const Card = ({ ShowDetail, DetailRequest, ActivateModal, i, x, y, rot, scale, trans, bind, data}) => {
+  const { poster, id } = data[i];
+  console.log('data id', data[i].id)
 
   const clickHandler = () => {
     ActivateModal(true);
