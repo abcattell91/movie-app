@@ -6,7 +6,6 @@ import '../App.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
-
 const CardContainer = ({id, title, poster, ShowDetail, DetailRequest, ActivateModal}) => {
 
   const clickHandler = () => {
@@ -22,15 +21,14 @@ const CardContainer = ({id, title, poster, ShowDetail, DetailRequest, ActivateMo
 
   return (
     <>
-      <img className="card" src={poster} alt={title} />
       <FontAwesomeIcon
-          onClick={() => clickHandler()}
-          icon={faBars}
-          size="3x"
-          className='hamburger-icon' />
+        onClick={() => clickHandler()}
+        icon={faBars}
+        size="3x"
+        className='hamburger-icon' />
     </>
         )
-      }
+}
 
 
 export default CardContainer;

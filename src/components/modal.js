@@ -5,7 +5,7 @@ import { faSquareXmark } from '@fortawesome/free-solid-svg-icons'
 
 import '../assets/modal.css';
 
-function Modal({closeModal, id, title, rating, duration, genres, trailer, description}) {
+function Modal({closeModal, id, title, rating, genres, trailer, description}) {
 
   return (
     <div className="modalBackground">
@@ -18,13 +18,13 @@ function Modal({closeModal, id, title, rating, duration, genres, trailer, descri
           />
         </div>
         <div className='modalTitle'>
-          <h1>{title}</h1>
+          <h1>{console.log(title)}</h1>
           <div className='modalRating'>
             <h1>{Math.round((rating + Number.EPSILON) * 10) / 10}</h1>
           </div>
         </div>
         <div className='modalBody'>
-          <iframe src={trailer} title={title} className="modalTrailer" />
+          <iframe src={console.log(trailer)} title={title} className="modalTrailer" />
             <div className='modalDescription'>
               <p>{description}</p>
             </div>
