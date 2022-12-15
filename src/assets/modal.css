@@ -63,6 +63,23 @@
   top: 0;
 }
 
+.modalBody {
+  display: contents;
+}
+
 .modalTrailer {
+  height: 32vh;
+}
+.loader {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 30%;
+}
+.video {
   padding-top: 8px;
+  text-align: center;
 }

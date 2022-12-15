@@ -1,7 +1,7 @@
-import React from "react";
-
+import React, { useState, CSSProperties } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareXmark } from "@fortawesome/free-solid-svg-icons";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import "../assets/modal.css";
 
@@ -12,8 +12,21 @@ function Modal({
   rating,
   genres,
   trailer,
-  description,
-}) {
+  description
+})
+{
+  const [loading, setLoading] = useState(true)
+
+  const hideSpinner = () => {
+    setLoading(false)
+  };
+
+  const override: CSSProperties = {
+    borderColor: "#ff6666",
+    height: "45px",
+    width: "40px"
+  };
+
   return (
     <div className="modalBackground">
       <div key={id} className="modalContainer">
@@ -25,13 +38,31 @@ function Modal({
           />
         </div>
         <div className="modalTitle">
-          <h1>{title}</h1>
+          <h2>{title}</h2>
           <div className="modalRating">
-            <h1>{Math.round((rating + Number.EPSILON) * 10) / 10}</h1>
+            <h2>{Math.round((rating + Number.EPSILON) * 10) / 10}</h2>
           </div>
         </div>
         <div className="modalBody">
-          <iframe src={trailer} title={title} className="modalTrailer" />
+          <div className="video">
+            <div className="loader">
+            <ClipLoader
+              loading={loading}
+              size={30}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+              cssOverride={override}
+            />
+            </div>
+            <iframe
+              onLoad={hideSpinner}
+              src={trailer}
+              title={title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture full"
+              className="modalTrailer"
+              loading='eager'
+            />
+          </div>
           <div className="modalDescription">
             <p>{description}</p>
           </div>

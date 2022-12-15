@@ -18,6 +18,7 @@
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.7",
     "react-spring": "^9.5.5",
     "react-tinder-card": "^1.6.2",
     "react-use-gesture": "^9.1.3",

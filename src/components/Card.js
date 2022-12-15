@@ -9,7 +9,6 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 const Card = ({ ShowDetail, DetailRequest, ActivateModal, i, x, y, trans, bind, data}) => {
   const { poster, id } = data[i];
-  console.log('data id', data[i].id)
 
   const clickHandler = () => {
     ActivateModal(true);
@@ -19,7 +18,6 @@ const Card = ({ ShowDetail, DetailRequest, ActivateModal, i, x, y, trans, bind, 
       DetailRequest(false);
       ShowDetail(response.data);
     });
-    console.log('showdetail', ShowDetail)
   };
 
   return (
@@ -31,7 +29,7 @@ const Card = ({ ShowDetail, DetailRequest, ActivateModal, i, x, y, trans, bind, 
       }}
     >
       <div>
-        <img className="card" src={poster} key={id} loading="lazy" alt="poster_picture" />
+        <img className="card" src={poster} key={id} alt="poster_picture" />
         <FontAwesomeIcon
         onClick={() => clickHandler()}
         icon={faBars}

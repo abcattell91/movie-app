@@ -89,9 +89,7 @@ function Deck() {
 
   return (
     <>
-      <>{cards}</>
-
-      <>
+      <>{cards}
         {activateModal ? (
           detailRequest === false ? (
             <Modal {...detail} closeModal={setActivateModal} />
