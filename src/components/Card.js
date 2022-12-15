@@ -1,5 +1,5 @@
 import React from "react";
-import { animated, interpolate } from "react-spring";
+import { animated, to } from "react-spring";
 import axios from "axios";
 
 import '../assets/Card.css'
@@ -7,7 +7,7 @@ import '../assets/Card.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
-const Card = ({ ShowDetail, DetailRequest, ActivateModal, i, x, y, rot, scale, trans, bind, data}) => {
+const Card = ({ ShowDetail, DetailRequest, ActivateModal, i, x, y, trans, bind, data}) => {
   const { poster, id } = data[i];
   console.log('data id', data[i].id)
 
@@ -25,25 +25,21 @@ const Card = ({ ShowDetail, DetailRequest, ActivateModal, i, x, y, rot, scale, t
   return (
     <animated.div
       key={i}
+      {...bind(i)}
       style={{
-        transform: interpolate([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`)
+        transform: to([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`)
       }}
     >
-      <animated.div
-        {...bind(i)}
-        style={{
-          transform: interpolate([rot], trans)
-        }}
-      >
-        <img className="card" src={poster} key={id} alt="poster_picture" />
+      <div>
+        <img className="card" src={poster} key={id} loading="lazy" alt="poster_picture" />
         <FontAwesomeIcon
         onClick={() => clickHandler()}
         icon={faBars}
         size="3x"
         className='hamburger-icon'
       />
+      </div>
       </animated.div>
-    </animated.div>
   );
 };
 

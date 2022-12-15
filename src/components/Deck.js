@@ -15,15 +15,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const to = i => ({
   x: 0,
   y: 0,
-  scale: 1,
-  rot: 0,
   delay: 0
 });
 
-const from = i => ({ rot: 0, scale: 1, y: 0 });
+const from = i => ({ y: 0 });
 
 const trans = (r, s) =>
-  `rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`;
+  `rotateY(${r / 10}deg) rotateZ(${r}deg)`;
 
 function Deck() {
   const [data, setData] = useState([]);
@@ -52,7 +50,7 @@ function Deck() {
       direction: [xDir],
       velocity
     }) => {
-      const trigger = velocity > 0.2;
+      const trigger = velocity > 0.1;
 
       const dir = xDir < 0 ? -1 : 1;
 
@@ -63,14 +61,8 @@ function Deck() {
         const isNope = nope.has(index);
 
         const x = isNope ? (200 + window.innerWidth) * dir : down ? xDelta : 0;
-
-        const rot = xDelta / 100 + (isNope ? dir * 10 * velocity : 0);
-
-        const scale = down ? 1.1 : 1;
         return {
           x,
-          rot,
-          scale,
           delay: undefined,
           config: { friction: 50, tension: down ? 800 : isNope ? 200 : 500 }
         };
@@ -81,14 +73,12 @@ function Deck() {
     }
   );
   return (
-    props.map(({ x, y, rot, scale }, i) => (
+    props.map(({ x, y }, i) => (
     <>
     <Card
       i={i}
       x={x}
       y={y}
-      rot={rot}
-      scale={scale}
       trans={trans}
       data={data}
       bind={bind}
