@@ -10,18 +10,17 @@ import Modal from "./modal";
 
 import { Loader } from "./Loader";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const to = i => ({
+const to = (i) => ({
   x: 0,
   y: 0,
-  delay: 0
+  delay: 0,
 });
 
-const from = i => ({ y: 0 });
+const from = (i) => ({ y: 0 });
 
-const trans = (r, s) =>
-  `rotateY(${r / 10}deg) rotateZ(${r}deg)`;
+const trans = (r, s) => `rotateY(${r / 10}deg) rotateZ(${r}deg)`;
 
 function Deck() {
   const [data, setData] = useState([]);
@@ -36,9 +35,9 @@ function Deck() {
   }, []);
 
   const [nope] = useState(() => new Set());
-  const [props, set] = useSprings(data.length, i => ({
+  const [props, set] = useSprings(data.length, (i) => ({
     ...to(i),
-    from: from(i)
+    from: from(i),
   }));
 
   const bind = useGesture(
@@ -48,7 +47,7 @@ function Deck() {
       delta: [xDelta],
       distance,
       direction: [xDir],
-      velocity
+      velocity,
     }) => {
       const trigger = velocity > 0.1;
 
@@ -56,7 +55,7 @@ function Deck() {
 
       if (!down && trigger) nope.add(index);
 
-      set(i => {
+      set((i) => {
         if (index !== i) return;
         const isNope = nope.has(index);
 
@@ -64,17 +63,16 @@ function Deck() {
         return {
           x,
           delay: undefined,
-          config: { friction: 50, tension: down ? 800 : isNope ? 200 : 500 }
+          config: { friction: 50, tension: down ? 800 : isNope ? 200 : 500 },
         };
       });
 
       if (!down && nope.size === data.length)
-        setTimeout(() => nope.clear() || set(i => to(i)), 600);
+        setTimeout(() => nope.clear() || set((i) => to(i)), 600);
     }
   );
-  return (
-    props.map(({ x, y }, i) => (
-    <>
+
+  const cards = props.map(({ x, y }, i) => (
     <Card
       i={i}
       x={x}
@@ -87,11 +85,25 @@ function Deck() {
       DetailRequest={setDetailRequest}
       ActivateModal={setActivateModal}
     />
-    {activateModal ? detailRequest === false ? (<Modal {...detail} closeModal={setActivateModal} />) : (<Loader />) : ''}
-    </>
-  )
   ));
 
+  return (
+    <>
+      <>{cards}</>
+
+      <>
+        {activateModal ? (
+          detailRequest === false ? (
+            <Modal {...detail} closeModal={setActivateModal} />
+          ) : (
+            <Loader />
+          )
+        ) : (
+          ""
+        )}
+      </>
+    </>
+  );
 }
 
 export default Deck;
