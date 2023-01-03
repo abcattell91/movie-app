@@ -20,19 +20,29 @@ const to = (i) => ({
 
 const from = (i) => ({ y: 0 });
 
+const limit = 10;
+
 const trans = (r, s) => `rotateY(${r / 10}deg) rotateZ(${r}deg)`;
 
 function Deck() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState()
   const [activateModal, setActivateModal] = useState(false);
   const [detail, setShowDetail] = useState(false);
   const [detailRequest, setDetailRequest] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/v1/contents`).then((response) => {
-      setData(response.data);
-    });
-  }, []);
+    const getData = () => {
+      setLoading(true);
+      axios.get(`http://localhost:3001/api/v1/contents?limit=${limit}&offset=${page}`).then((response) => {
+            setData([response.data]);
+            setLoading(false);
+          });
+        }
+        getData();
+    },[page]);
+    console.log(data)
 
   const [nope] = useState(() => new Set());
   const [props, set] = useSprings(data.length, (i) => ({
@@ -100,6 +110,7 @@ function Deck() {
           ""
         )}
       </>
+      {<button className="btn-load-more" onClick={() => setPage(page + 1)}>{loading ? 'Loading...' : 'Load More'}</button>}
     </>
   );
 }

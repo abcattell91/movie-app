@@ -9,10 +9,10 @@ function Modal({
   closeModal,
   id,
   title,
-  rating,
+  imdb_rating,
   genres,
-  trailer,
-  description
+  youtube_code,
+  plot
 })
 {
   const [loading, setLoading] = useState(true)
@@ -40,7 +40,7 @@ function Modal({
         <div className="modalTitle">
           <h2>{title}</h2>
           <div className="modalRating">
-            <h2>{Math.round((rating + Number.EPSILON) * 10) / 10}</h2>
+            <h2>{Math.round((imdb_rating + Number.EPSILON) * 10) / 10}</h2>
           </div>
         </div>
         <div className="modalBody">
@@ -56,7 +56,7 @@ function Modal({
             </div>
             <iframe
               onLoad={hideSpinner}
-              src={trailer}
+              src={youtube_code}
               title={title}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture full"
               className="modalTrailer"
@@ -64,7 +64,7 @@ function Modal({
             />
           </div>
           <div className="modalDescription">
-            <p>{description}</p>
+            <p>{plot}</p>
           </div>
           <div className="modalGenres">
             {genres.map((genre, i) => (
