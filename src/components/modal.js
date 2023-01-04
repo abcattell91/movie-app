@@ -56,7 +56,7 @@ function Modal({
             </div>
             <iframe
               onLoad={hideSpinner}
-              src={youtube_code}
+              src={`http://youtube.com/${youtube_code}`}
               title={title}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture full"
               className="modalTrailer"

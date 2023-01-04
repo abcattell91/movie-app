@@ -30,7 +30,7 @@ const Card = ({ ShowDetail, DetailRequest, ActivateModal, i, x, y, trans, bind, 
       }}
     >
       <div>
-        <img className="card" loading="lazy" src={poster_url} key={id} alt="poster_picture" />
+        <img className="card" src={poster_url} key={id} alt="poster_picture" />
         <FontAwesomeIcon
         onClick={() => clickHandler()}
         icon={faBars}
