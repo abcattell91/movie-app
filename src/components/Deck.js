@@ -19,7 +19,7 @@ const to = (i) => ({
   delay: 0,
 });
 
-const limit = 2
+const limit = 15
 
 const from = (i) => ({ y: 0 });
 
@@ -34,33 +34,14 @@ function Deck() {
   const [offset, setOffset] = useState(1);
   const [totalItems, setTotalItems] = useState(1)
 
-useEffect(() => {
-  const loadDataFromServer = () => {
-     axios.get(`http://localhost:3001/api/v1/contents?limit=${limit}&offset=${offset}`)
-        .then((response) => {
-        setData(response.data);
-        setTotalItems(response.data.length)
-        setLoading(false)
-      });
-    };
-    loadDataFromServer()
-  }, [offset]);
-
-
-  // useEffect(() => {
-  //   const getData = () => {
-  //     setLoading(true);
-  //     fetch(`http://localhost:3001/api/v1/contents?limit=2&offset=${offset}`)
-  //       .then(response => response.json())
-  //       .then(response => {
-  //           setData(response);
-  //           setTotalItems(response.length)
-  //           setLoading(false);
-  //         });
-  //       }
-  //       getData();
-  //   }, [offset]);
-
+  useEffect(() => {
+    setLoading(true)
+    axios.get(`http://localhost:3001/api/v1/contents?limit=${limit}&offset=${offset}`)
+       .then((response) => {
+       setData(response.data.contents);
+    setLoading(false)
+     });
+ }, [offset]);
 
   const [nope] = useState(() => new Set());
   const [props, set] = useSprings(data.length, (i) => ({
@@ -77,7 +58,7 @@ useEffect(() => {
       direction: [xDir],
       velocity,
     }) => {
-      const trigger = velocity > 0.1;
+      const trigger = velocity > 0.2;
 
       const dir = xDir < 0 ? -1 : 1;
 
@@ -87,11 +68,12 @@ useEffect(() => {
         if (index !== i) return;
         const isNope = nope.has(index);
 
-        const x = isNope ? (400 + window.innerWidth) * dir : down ? xDelta : 0;
+        const x = isNope ? (200 + window.innerWidth) * dir : down ? xDelta : 0;
+
         return {
           x,
           delay: undefined,
-          config: { friction: 50, tension: down ? 800 : isNope ? 200 : 500 },
+          config: { friction: 50, tension: down ? 400 : isNope ? 100 : 250 },
         };
       });
 
@@ -101,8 +83,9 @@ useEffect(() => {
   );
 
   const handleMoreCards = () => {
-    setOffset(offset + 2);
-    setLoading(true)
+    setOffset(offset + limit);
+    setTimeout(() => nope.clear() || set((i) => to(i), 12));
+    setLoading(true);
   };
 
   const cards = props.map(({ x, y }, i) => (
