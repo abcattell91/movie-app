@@ -12,4 +12,7 @@
   top: 15px;
   right: 15px;
   cursor: pointer;
+  background-color: #ffffff87;
+  padding: 4px;
+  border-radius: 4px;
 }

@@ -13,7 +13,6 @@ import { Loader } from "./Loader";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { faCarSide } from "@fortawesome/free-solid-svg-icons";
 
 const limit = 10
 
@@ -134,21 +133,21 @@ function Deck() {
       scale={scale}
     />
   ));
-  console.log(loading)
+
     return (
       <>
-        <div className="button-container">
+        <div className="loading">
+          <ClipLoader
+            loading={loading}
+            size={35}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            cssOverride={override}
+          />
+        </div>
+        <div className="button-container" style={{display: loading ? 'none' : ''}}>
           <button className="load-button" onClick={handleMoreCards}>
             {'Swipe Some More?'}
-            <div className="loading">
-              <ClipLoader
-                loading={loading}
-                size={30}
-                aria-label="Loading Spinner"
-                data-testid="loader"
-                cssOverride={override}
-              />
-            </div>
           </button>
         </div>
         {cards}
