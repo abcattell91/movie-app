@@ -73,7 +73,7 @@ function Deck() {
 
         console.log('liked', like)
 
-      const disLike = (200 + window.innerWidth) && xDir < -0.90;
+      const disLike = (200 + window.innerWidth) && xDir < -0.90 && index;
 
       if ((200 + window.innerWidth) && xDir > -0.90)
         setDisliked(true);
